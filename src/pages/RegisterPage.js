@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
-const LoginPage = ({ onLogin }) => {
+const RegisterPage = ({ onRegister }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
 
-    if (email === 'test@example.com' && password === 'password123') {
-      onLogin({ name: 'Test User', email });
-      alert('Login successful!');
+    if (email && password) {
+      onRegister({ email, password });
+      alert('User registered successfully!');
     } else {
-      alert('Invalid credentials!');
+      alert('Please fill in all fields');
     }
   };
 
   return (
     <div>
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
+      <h1>Register</h1>
+      <form onSubmit={handleRegister}>
         <label>
           Email:
           <input
@@ -38,13 +37,10 @@ const LoginPage = ({ onLogin }) => {
           />
         </label>
         <br />
-        <button type="submit">Login</button>
+        <button type="submit">Register</button>
       </form>
-      <p>
-        Don't have an account? <Link to="/register">Register here</Link>
-      </p>
     </div>
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

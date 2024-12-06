@@ -1,24 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import API from '../../api';
-import PostItem from './PostItem';
+import React, { useState, useEffect } from 'react';
 
-const PostList = ({ user }) => {
+const PostList = () => {
   const [posts, setPosts] = useState([]);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await API.get('/posts');
-      setPosts(response.data);
-    };
-    fetchPosts();
+    fetch('/api/posts')
+      .then((res) => res.json())
+      .then((data) => setPosts(data))
+      .catch((err) => console.error(err));
   }, []);
+
+  const filteredPosts = posts.filter((post) =>
+    post.title.toLowerCase().includes(query.toLowerCase())
+  );
 
   return (
     <div>
-      <h2>All Posts</h2>
-      {posts.map((post) => (
-        <PostItem key={post.id} post={post} user={user} />
-      ))}
+      <input
+        type="text"
+        placeholder="ค้นหาโพสต์..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+      <ul>
+        {filteredPosts.map((post) => (
+          <li key={post.id}>
+            <a href={`/posts/${post.id}`}>{post.title}</a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

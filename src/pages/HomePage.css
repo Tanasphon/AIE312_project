@@ -1,0 +1,19 @@
+.homepage {
+    padding: 32px;
+    text-align: center;
+    background-color: #eef2f7;
+  }
+  
+  .homepage h1 {
+    font-size: 2.4rem;
+    color: #333;
+  }
+  
+  .card-container {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  

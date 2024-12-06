@@ -1,5 +1,3 @@
-นี่คือการแปลเนื้อหาจาก README ของ **Create React App**:
-
 ---
 
 # เริ่มต้นใช้งาน Create React App
